@@ -1,0 +1,28 @@
+{
+  "name": "jclude",
+  "version": "1.0.0",
+  "description": "JavaScript source files builder and parser",
+  "main": "jclude.js",
+  "bin": {
+    "jnclude": "bin/index.js"
+  },
+  "scripts": {
+    "test": "node bin/index.js -in=\"tests/test.js\" -out=\"tests/result.js\" -nodebug -flag=\"test dev\"",
+    "best": "node bin/index.js -in=\"tests/test.js\" -out=\"tests/result.js\" -nodebug -flag=\"test dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capinemo/jclude.git"
+  },
+  "keywords": [
+    "jnclude",
+    "bundler",
+    "concat"
+  ],
+  "author": "Sadykov Rustem <capitan__nemo@mail.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/capinemo/jclude/issues"
+  },
+  "homepage": "https://github.com/capinemo/jclude#readme"
+}
