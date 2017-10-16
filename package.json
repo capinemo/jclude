@@ -1,7 +1,7 @@
 {
   "name": "jclude",
   "version": "1.0.0",
-  "description": "JavaScript source files builder and parser",
+  "description": "JavaScript source files builder, constructor and parser",
   "main": "jclude.js",
   "bin": {
     "jnclude": "bin/index.js"

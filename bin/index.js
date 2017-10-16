@@ -9,14 +9,14 @@ let fs = require('fs'),
     output;
 
 error.exec = '\n\
-ERROR: Bad parameters.\n\
+\x1b[31mERROR\x1b[0m: Bad parameters.\n\
 Usage: jnclude -in=<file name> -out=<file name> \
 [ [-option1] [-option2] ... ]\n\
 Help: jnclude -help\n\
 ';
 
 help = '\n\
-Usage: jnclude -in=<file name> -out=<file name> \
+\x1b[32mUsage\x1b[0m: jnclude -in=<file name> -out=<file name> \
 [ [-option1] ... ]\n\n\
 Options:\n\
 -in=<file name>         Set main source file.\n\
@@ -48,10 +48,8 @@ process.argv.slice(2).forEach((arg) => {
                 value;
 
             pos = option.match(/=/i);
-
             name = option.substr(0, pos.index);
             value = option.substr(pos.index + 1, size);
-            
             args[name] = value;
         } else {
             args[option] = true;

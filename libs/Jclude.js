@@ -1,15 +1,19 @@
 /* global error */
 
 let fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    Analyzer = require('./Analyzer');
+
+
 
 Jnclude = function(args) {
     let _src_dir,
         _dest_dir,
+        _dest_file,
         _options = {},
         _error = {},
         _buffer = '',
-        _buffer_size = 100,
+        _buffer_size = 60,
         _encoding = 'utf8',
         _presets = {},
         _;
@@ -75,7 +79,7 @@ Rename destination file or select other path to save.';
         };
     };
 
-    _copyContext = async function (src, dest) {
+    _copyContext = function (src, dest) {
         let _src_size = fs.statSync(src).size,
             start = 0,
             end = start + _buffer_size - 1,
@@ -111,7 +115,62 @@ Rename destination file or select other path to save.';
     //TODO parcer in another module
 
 
+    function _parseBuffer(line) {
+        let include = /\n( *?)\/\/ #include\(([\S\s]+?)\)/,
+            find;
+    
+        find = line.match(include);
+        //console.log(find);
+
+        if (find) {
+            let new_file = `${_src_dir}/${find[2]}`,
+                offset_line = `${find[1]}`;
+                //console.log(offset_line, new_file);
+            //_copyContext(new_file, args.out);
+        };
+
+        return line;
+    }
+
+    function _readSourceFile(source) {
+        let _src_size = fs.statSync(source).size,
+            encoding = _encoding,
+            highWaterMark = _buffer_size,
+            _;
+
+        if (fs.existsSync(_dest_file)) {
+            fs.unlinkSync(_dest_file);
+        };
+
+        return new Promise((resolve, reject) => {
+            fs.createReadStream(source, {encoding, highWaterMark})
+                .on('readable', function() {
+                    this.on('data',function(chunk) {
+                        chunk = _parseBuffer(chunk);
+
+                        //console.log(chunk);
+
+                        this.start = this.end + 1;
+                        this.end = this.start + _buffer_size - 1;
+                    });
+                })
+
+                .on('end',function() {
+                    //resolve();
+                    this.destroy();
+                });
+        });
+    }
+
     return new Promise((resolve, reject) => {
+        let analyzer,
+            object = {
+                a: '111',
+                b: '2c2',
+                c: '333',
+                _: 'cab'
+            }; //must be 33311123332
+
         if (!fs.existsSync(args.in)) {
             reject(_error.read_source);
         };
@@ -127,12 +186,21 @@ Rename destination file or select other path to save.';
                 reject(_error.rewrite_dest);
             };
         };
-        
-        // TODO create registration
+
+        _dest_file = args.out;
+
+        // TODO create options registration
         if (args.nodebug) _options.nodebug = true;
 
+        analyzer = new Analyzer(args.in, args.out, _options, []);
 
-        _copyContext(args.in, args.out);
+        analyzer.startProcess().then(result => {
+            resolve(result);
+        }).catch(() => {
+            reject('ERROR');
+        });
+
+        //_copyContext(args.in, args.out);
     });
 };
 

@@ -1,17 +1,16 @@
 function test () {
-    // #include(data.js)
 
 
-    /*>*/
     number = 128;
-    /*<*/
 
 //1234
 //
 //
-//
+//123444
 
     //test comment
     return number;
 };
-let number = 254;
+
+
+
