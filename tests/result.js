@@ -3,9 +3,10 @@ function test () {
     number = 354;
 
 
-    //
     let number = 254;
     number = 354;
+    
+    //
 //1234
 //
 //123444
