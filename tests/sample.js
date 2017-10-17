@@ -2,7 +2,7 @@ function test () {
     let number = 254;
     number = 354;
 
-
+    
     //
     let number = 254;
     number = 354;

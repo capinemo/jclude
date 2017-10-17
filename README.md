@@ -1,4 +1,4 @@
-# jclude
+# jnclude
 
 
 ## Console Options
@@ -56,7 +56,7 @@ fuction Test () {
 /*include(objects.js)*/
 
     if (appendix) return true;
-    
+
     return false;
 };
 ```
@@ -79,7 +79,7 @@ fuction Test () {
 let my_object = {go: 1};
 
     if (appendix) return true;
-    
+
     return false;
 };
 ```

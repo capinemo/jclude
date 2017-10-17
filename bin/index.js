@@ -2,12 +2,12 @@
 /* global process */
 
 let JCL = {},
-    Jclude;
+    Jnclude;
 
-JCL.module = require('../libs/Jclude');
+JCL.module = require('../libs/Jnclude');
 JCL.args = {};
 JCL.error = {};
-Jclude = new JCL.module();
+Jnclude = new JCL.module();
 
 process.argv.slice(2).forEach((arg) => {
     let arg_check = /^-/;
@@ -16,7 +16,7 @@ process.argv.slice(2).forEach((arg) => {
         let option = arg.substr(1),
             pos,
             size = option.length;
-            
+
         if (option.indexOf('=') !== -1) {
             let name,
                 value;
@@ -29,7 +29,7 @@ process.argv.slice(2).forEach((arg) => {
             JCL.args[option] = true;
         }
     } else {
-        Jclude.showError(101);
+        Jnclude.showError(101);
     };
 
     if (JCL.args['flag']) {
@@ -38,11 +38,11 @@ process.argv.slice(2).forEach((arg) => {
 });
 
 if (JCL.args['help']) {
-    Jclude.showHelp();
+    Jnclude.showHelp();
 };
 
 if (!JCL.args['in'] || !JCL.args['out']) {
-    Jclude.showError(102);
+    Jnclude.showError(102);
 };
 
-Jclude.execute(JCL.args);
+Jnclude.execute(JCL.args);

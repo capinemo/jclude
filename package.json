@@ -1,28 +1,29 @@
 {
-  "name": "jclude",
+  "name": "jnclude",
   "version": "1.0.0",
   "description": "JavaScript source files builder, constructor and parser",
-  "main": "jclude.js",
+  "main": "jnclude.js",
   "bin": {
     "jnclude": "bin/index.js"
   },
   "scripts": {
-    "test": "node bin/index.js -in=\"tests/test.js\" -out=\"tests/result.js\" -nodebug -flag=\"test dev\"",
-    "best": "node bin/index.js -in=\"tests/test.js\" -out=\"tests/result.js\" -nodebug -flag=\"test dev\""
+    "test": "node bin/index.js -in=\"tests/test.js\" -out=\"tests/result.js\" -flag=\"test dev\"",
+    "dest": "node bin/index.js -in=\"tests/test.js\" -out=\"tests/result.js\" -develop -flag=\"test dev\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/capinemo/jclude.git"
+    "url": "git+https://github.com/capinemo/jnclude.git"
   },
   "keywords": [
     "jnclude",
     "bundler",
-    "concat"
+    "concat",
+    "constructor"
   ],
   "author": "Sadykov Rustem <capitan__nemo@mail.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/capinemo/jclude/issues"
+    "url": "https://github.com/capinemo/jnclude/issues"
   },
-  "homepage": "https://github.com/capinemo/jclude#readme"
+  "homepage": "https://github.com/capinemo/jnclude#readme"
 }
