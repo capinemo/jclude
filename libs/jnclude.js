@@ -12,7 +12,6 @@ module.exports = class Jnclude {
    constructor () {
         console.time('Done');
         this._start_cpu = process.cpuUsage();
-        this._start_mem = process.memoryUsage();
 
         this._console = {
             c_black:       '\x1b[30m',
@@ -48,6 +47,8 @@ module.exports = class Jnclude {
         this._buffer.file = [];
         // included files collection
         this._buffer.include = [];
+        // included files counts collection
+        this._buffer.inc_count = [];
         // boffer size for createReadStream function
         this._file_buffer_size = 1024;
         // default encoding for createReadStream function
@@ -110,6 +111,8 @@ module.exports = class Jnclude {
         // TODO create options registration
         
         this._buffer.include.push(this._source);
+        this._buffer.inc_count.push(1);
+        
         this.readFile(this._source);
     };
 
@@ -171,6 +174,13 @@ module.exports = class Jnclude {
                                 that.showResult();
                             };
 
+                            //included file finish with other inlcude directive
+                            if (result === 'next' && last_block) {
+                                if (typeof callback === 'function') {
+                                    callback();
+                                };
+                            };
+
                             // read next block
                             if (result === 'next' && i < count ) {
                                 i++;
@@ -183,7 +193,7 @@ module.exports = class Jnclude {
                                 };
                             } else {
                                 timer = setTimeout(tick, 1);
-                            }
+                            };
                         });
                     };
                 }, 10);
@@ -249,8 +259,11 @@ module.exports = class Jnclude {
                 find = line.match(command),
                 offset, com, path, flag,
                 include_stack = this._buffer.include,
+                count_stack = this._buffer.inc_count,
                 file_stack = this._buffer.file,
                 file = file_stack[file_stack.length - 1],
+                full_offset = prefx,
+                position,
                 _;
 
             if (find) {
@@ -261,13 +274,22 @@ module.exports = class Jnclude {
                     : null;
                 flag = find[4]? find[4] : null;
 
+                full_offset = full_offset + offset;
+
                 if (com === 'include') {
                     if (include_stack.indexOf(path) === -1) {
                         include_stack.push(path);
                     };
 
+                    position = include_stack.indexOf(path);
+                    if (count_stack[position]) {
+                        count_stack[position]++;
+                    } else {
+                        count_stack[position] = 1;
+                    };
+
                     parent_break = true;
-                    this.readFile(path, offset, () => {
+                    this.readFile(path, full_offset, () => {
                         parent_break = false;
                         resolve('next');
                     });
@@ -277,8 +299,15 @@ module.exports = class Jnclude {
                     if (include_stack.indexOf(path) === -1) {
                         include_stack.push(path);
 
+                        position = include_stack.indexOf(path);
+                        if (count_stack[position]) {
+                            count_stack[position]++;
+                        } else {
+                            count_stack[position] = 1;
+                        };
+
                         parent_break = true;
-                        this.readFile(path, offset, () => {
+                        this.readFile(path, full_offset, () => {
                             parent_break = false;
                             resolve('next');
                         });
@@ -298,7 +327,7 @@ module.exports = class Jnclude {
             if (com !== 'include' && com !== 'include_once'
                         && com !== 'exclude' && com !== '/exclude'
                         && !this._buffer.obj[file].drop ) {
-                arr[index] = prefx + arr[index];
+                arr[index] = full_offset + arr[index];
 
                 this.writeBlock(arr[index], last, eof, () => {
                     parent_break = false;
@@ -344,23 +373,17 @@ module.exports = class Jnclude {
      * showResult - show end result information
      */
     showResult() {
-        let finish;
-        console.log(`${this._console.c_green}I'm ready!${this._console.reset}`);
+        let inc_result = '';
+        for(let i = 0, count = this._buffer.include.length; i < count; i++) {
+            inc_result += `\t${this._buffer.include[i]} - ${this._buffer.inc_count[i]} times\n`;
+        };
+
+        console.log(`${this._console.c_green}Jclude ready!${this._console.reset}`);
         console.timeEnd('Done');
         console.log('CPU usage: ', process.cpuUsage(this._start_cpu));
-
-        finish = process.memoryUsage();
         console.log('Memory usage: \n', process.memoryUsage());
-        /*console.log(`Memory usage:
-    rss: ${finish.rss - this._start_mem.rss}
-    heapTotal: ${finish.heapTotal - this._start_mem.heapTotal}
-    heapUsed: ${finish.heapUsed - this._start_mem.heapUsed}
-    external: ${finish.external - this._start_mem.external}
-`);*/
-        console.log('Loaded files: \n', this._buffer.include.join(', '));
-
-
-        //console.log(this._buffer);
+        console.log('Loaded files:');
+        console.log(inc_result);
     };
 
 
