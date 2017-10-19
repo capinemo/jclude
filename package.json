@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "node bin/index.js -in=\"tests/test.js\" -out=\"tests/result.js\" -flag=\"test dev\"",
-    "dest": "node bin/index.js -in=\"tests/test.js\" -out=\"tests/result.js\" -develop -flag=\"test dev\""
+    "dest": "node bin/index.js -in=\"tests/test.js\" -out=\"tests/result.js\" -develop -flag=\"test dev\"",
+    "check": "jscs ."
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/capinemo/jnclude/issues"
   },
-  "homepage": "https://github.com/capinemo/jnclude#readme"
+  "homepage": "https://github.com/capinemo/jnclude#readme",
+  "devDependencies": {}
 }

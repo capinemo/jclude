@@ -4,7 +4,7 @@
 let JCL = {},
     Jnclude;
 
-JCL.module = require('../libs/jnclude');
+JCL.module = require('../lib/jnclude');
 JCL.args = {};
 JCL.error = {};
 Jnclude = new JCL.module();
