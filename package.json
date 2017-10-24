@@ -7,10 +7,9 @@
     "jnclude": "bin/index.js"
   },
   "scripts": {
-    "test": "mocha",
     "shot": "node bin/index.js -in=test/first/test.js -out=test/first/result.js",
     "full": "node bin/index.js -in=test/first/test.js -out=test/first/result.js -develop -fullinfo -flag=\"test dev\"",
-    "check": "jscs ."
+    "test": "mocha && jscs ."
   },
   "repository": {
     "type": "git",
