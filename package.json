@@ -1,15 +1,13 @@
 {
   "name": "jnclude",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "JavaScript utilite for including files and excluding blocks",
   "main": "jnclude.js",
   "bin": {
     "jnclude": "bin/index.js"
   },
   "scripts": {
-    "shot": "node bin/index.js -in=test/first/test.js -out=test/first/result.js",
-    "full": "node bin/index.js -in=test/first/test.js -out=test/first/result.js -develop -fullinfo -flag=\"test dev\"",
-    "test": "mocha && jscs ."
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -29,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/capinemo/jnclude/issues"
   },
-  "homepage": "https://github.com/capinemo/jnclude#readme"
+  "homepage": "https://github.com/capinemo/jnclude#readme",
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  }
 }

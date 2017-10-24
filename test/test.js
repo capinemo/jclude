@@ -49,6 +49,9 @@ function createTest (task) {
                 if (result) {
                     let blank = fs.readFileSync(bfile, 'utf8'),
                         out = fs.readFileSync(rfile, 'utf8');
+
+                        blank = blank.replace(/\r\n/g, '\n');
+
                     done(assert.equal(blank, out));
                 };
             }).catch(error => {
