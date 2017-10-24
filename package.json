@@ -1,7 +1,7 @@
 {
   "name": "jnclude",
   "version": "1.0.0",
-  "description": "JavaScript source files builder, constructor and parser",
+  "description": "JavaScript utilite for including files and excluding blocks",
   "main": "jnclude.js",
   "bin": {
     "jnclude": "bin/index.js"
@@ -17,17 +17,17 @@
   },
   "keywords": [
     "jnclude",
-    "bundler",
+    "inlcude",
+    "exclude",
+    "builder",
     "concat",
     "constructor"
   ],
   "author": "Sadykov Rustem <rmsadykov@picum.ru>",
   "license": "MIT",
+  "preferGlobal": true,
   "bugs": {
     "url": "https://github.com/capinemo/jnclude/issues"
   },
-  "homepage": "https://github.com/capinemo/jnclude#readme",
-  "devDependencies": {
-    "mocha": "^4.0.1"
-  }
+  "homepage": "https://github.com/capinemo/jnclude#readme"
 }
