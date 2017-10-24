@@ -1,0 +1,1 @@
+    TEST.variable = TEST.variable + 'good ';
