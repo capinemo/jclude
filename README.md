@@ -102,7 +102,6 @@ _sample/appendix.js_
 ```
 
 run `jnclude -in=sample/main.js -out=sample/result.js`
-
 _sample/result.js_
 ```js
 console.log(1);
@@ -112,7 +111,6 @@ console.log(2);
 ```
 
 run `jnclude -in=sample/main.js -out=sample/result.js -develop`
-
 _sample/result.js_
 ```js
 console.log(1);
@@ -123,7 +121,6 @@ console.log(2);
 ```
 
 run `jnclude -in=sample/main.js -out=sample/result.js -flag="dev"`
-
 _sample/result.js_
 ```js
 console.log(1);
@@ -134,10 +131,16 @@ console.log(2);
 ```
 
 run `jnclude -in=sample/main.js -out=sample/result.js -flag="pro"`
-
 _sample/result.js_
 ```js
 console.log(1);
 console.log(2);
 
 ```
+
+## Planned
+- [x] Excluding debug code
+- [ ] Including certain block in source files
+- [ ] Remove comments, console and alert(-noalert) calling
+- [ ] `-noflag` option - use directives without given flags
+- [ ] `-log` option - generation the comments with directive result description
