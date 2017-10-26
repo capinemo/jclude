@@ -102,6 +102,7 @@ _sample/appendix.js_
 ```
 
 run `jnclude -in=sample/main.js -out=sample/result.js`
+
 _sample/result.js_
 ```js
 console.log(1);
@@ -111,6 +112,7 @@ console.log(2);
 ```
 
 run `jnclude -in=sample/main.js -out=sample/result.js -develop`
+
 _sample/result.js_
 ```js
 console.log(1);
@@ -121,6 +123,7 @@ console.log(2);
 ```
 
 run `jnclude -in=sample/main.js -out=sample/result.js -flag="dev"`
+
 _sample/result.js_
 ```js
 console.log(1);
@@ -131,6 +134,7 @@ console.log(2);
 ```
 
 run `jnclude -in=sample/main.js -out=sample/result.js -flag="pro"`
+
 _sample/result.js_
 ```js
 console.log(1);
