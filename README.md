@@ -20,13 +20,13 @@ jnclude -in=path/source.js -out=path/destination.js [options]
 ```
 
 ## Console Options
-`-in` - Main source file name.
+`-in=/path/src_name` - Main source file name.
 
-`-out` - Destination file name. If path of destination not specified, file creates in the source folder. But if source path contain file with specified name, _**jnclude**_ returns error.
+`-out=/path/dest_name` - Destination file name. If path of destination not specified, file creates in the source folder. But if source path contain file with specified name, _**jnclude**_ returns error.
 
 `-flag="flag_1 [other_flags]"` - Activate including or excluding for blocks marked with flags. If the flags option is given, directives without flag or other flags **don't work**.
 
-`-develop` - If develop option is given all exclude directives don't work
+`-develop` - If develop option is given all `exclude` directives don't work
 
 `-fullinfo` - Shows detail information after building:
 ```
@@ -60,12 +60,12 @@ ____|_________|______| _______
 **where:** 1 - offset, 2 - command, 3 - source file name, 4 - flags
 
 
-2. **include_once** - checks that this file not used by _**jnclude**_ earlier and copy the given file content and put it instead directive
+2. **include_once** - checks that this file not used by _**jnclude**_ earlier and copy the given file content and put it instead directive. If used file earlier directive ignored.
 ```js
     //>include_once(002.js) dev
 ```
 
-3. **exclude** - remove code beetween `exclude` and `/exclude` if not given `-develop` option
+3. **exclude** - remove code beetween `exclude` and `/exclude` if not given `-develop` option.
 ```js
     //>exclude pro
         alert(error);
