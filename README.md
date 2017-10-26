@@ -12,7 +12,7 @@ npm install jnclude -g
 ```
 3. For get help of using _**jnclude**_ run:
 ```
-jnclude -h
+jnclude -help
 ```
 4. To run _**jnclude**_, you can use the following command:
 ```
