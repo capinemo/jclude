@@ -101,8 +101,7 @@ _sample/appendix.js_
     console.log(3);
 ```
 
-run `jnclude -in=sample/main.js -out=sample/result.js`
-
+запуск `jnclude -in=sample/main.js -out=sample/result.js`
 _sample/result.js_
 ```js
 console.log(1);
@@ -111,8 +110,7 @@ console.log(2);
 
 ```
 
-run `jnclude -in=sample/main.js -out=sample/result.js -develop`
-
+запуск `jnclude -in=sample/main.js -out=sample/result.js -develop`
 _sample/result.js_
 ```js
 console.log(1);
@@ -122,8 +120,7 @@ console.log(2);
 
 ```
 
-run `jnclude -in=sample/main.js -out=sample/result.js -flag="dev"`
-
+запуск `jnclude -in=sample/main.js -out=sample/result.js -flag="dev"`
 _sample/result.js_
 ```js
 console.log(1);
@@ -133,11 +130,17 @@ console.log(2);
 
 ```
 
-run `jnclude -in=sample/main.js -out=sample/result.js -flag="pro"`
-
+запуск `jnclude -in=sample/main.js -out=sample/result.js -flag="pro"`
 _sample/result.js_
 ```js
 console.log(1);
 console.log(2);
 
 ```
+
+## Планируется
+- [x] Исключение блоков с отладочным кодом
+- [ ] Подключение отдельных блоков файлов
+- [ ] Удаление комментариев, вызовов console, alert(-noalert)
+- [ ] Опция -noflag (использовать все, кроме указанных флагов)
+- [ ] Опция -log (генерировать комментарии с описанием результата работы директивы)
